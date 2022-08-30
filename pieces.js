@@ -6,9 +6,16 @@ Notez que bien que la méthode soit nommée json(), le résultat n'est pas JSON 
 et de son analyse pour produire un objet JavaScript. pieces[]   */
 
 
- const reponse= await fetch(pieces-autos.json); /* await implique d'avoir avec link js async ou au debut avec un type module du fichier pieces js*/
- const pieces= await reponse.json();
+ const reponse=  fetch("pieces-autos.json"); /* await implique d'avoir avec link js async ou au debut avec un type module du fichier pieces js*/
+ 
 
+
+
+/* verification de la requete du fichier piece-autos.json*/
+
+console.log("reponse de la requete fetch du fichier pieces-autos.json:",reponse); 
+/*renvoit le status de la reponse de la requete fetch du package piece auto.json( avec la promesse resultat   response ok ( statut text=ok) 
+et le statut 200 de la requete http de la page web) et affiche dans la console le corps de la requete et si tout c'est bien passé*/
 
 
 

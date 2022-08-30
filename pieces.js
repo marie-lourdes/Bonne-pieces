@@ -33,3 +33,5 @@ const prixElement = document.createElement("p");
 prixElement.innerText = ampoule.prix;
 const categorieElement = document.createElement("p");
 categorieElement.innerText = ampoule.categorie;
+
+console.log ( "produit ampoule:",ampoule);

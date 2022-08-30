@@ -30,20 +30,27 @@ imageElement.src = ampoule.image;
 const nomElement = document.createElement("h2");
 nomElement.innerText = ampoule.nom;
 const prixElement = document.createElement("p");
-prixElement.innerText = "prix:" + " "+ (ampoule.prix < 35 ? ampoule.prix +"€" : ampoule.prix +"€€€"); /* operateur ternaire: condition, valeur true ,et valeur false*/
+prixElement.innerText = "prix:" + " "+ ampoule.prix + "€" + " (" + (ampoule.prix < 35 ? "€" : "€€€") + ")"; /* operateur ternaire: condition, valeur true ,et valeur false*/
 const categorieElement = document.createElement("p");
 categorieElement.innerText = ampoule.categorie;
 
 console.log ( "produit ampoule:",ampoule);
-
+const disponibiliteElement = document.createElement("p");
+disponibiliteElement.innerText = ampoule.disponibilite ? "En stock" : "Rupture de stock";
+/* test valeur de la disponibilitén en stocke (valeur true de disponibilité dans le fichier piece-auto.json , rupture de stock false */
+const descriptionElement = document.createElement("p");
+descriptionElement.innerText = ampoule.description ?? "Pas de description pour le moment.";
+/* nullish envoit la valeur de substitution si la valeur vaut Null ou undefined sinon garde la valeur , ici la valeur de description est gardé, la valeur de description est presente et defini*/
 
 /* ajout a la page web de la fiche produit ampoule avec append child*/
 
 const sectionFiches = document.querySelector(".fiches");
 sectionFiches.appendChild(imageElement);
+sectionFiches.appendChild(descriptionElement);
 sectionFiches.appendChild(nomElement);
 sectionFiches.appendChild(prixElement);
 sectionFiches.appendChild(categorieElement);
+sectionFiches.appendChild(disponibiliteElement);
 
 /* redimensionnement de l image de l'ampoule*/
 imageElement.style.width="25%";
@@ -52,7 +59,38 @@ imageElement.style.width="25%";
 console.log( "essuie glace valeur retourné",pieces[4].categorie);
 
 
-console.log( "test  nullish categorie essuie glace:", pieces[4].categorie ?? "aucune categorie"); 
+console.log( "test  nullish categorie essuie glace:", pieces[4].categorie ?? "(aucune categorie)"); 
 
 /* l'opérateur nullish ??, teste la presence de la valeur categorie  de l index  4 essuie glace
  et renvoit une valeur de substitution =aucune categorie si valeur renvoyé est null ou undefined*/
+
+
+ for (let piece of pieces) {
+    // Récupération de l'élément du DOM qui accueillera les fiches
+    const sectionFiches = document.querySelector(".fiches");
+
+    // Création d’une balise dédiée à une pièce automobile
+    const pieceElement = document.createElement("article");
+
+
+    // Idem pour le nom, le prix et la catégorie...
+    const imageElement = document.createElement("img");
+    imageElement.src = piece.image; 
+    const nomElement = document.createElement("h2");
+    nomElement.innerText = piece.nom;
+    const prixElement = document.createElement("p");
+    prixElement.innerText = "prix:" + " "+ piece.prix + "€" + " (" + (piece.prix < 35 ? "€" : "€€€") + ")"; 
+    const categorieElement = document.createElement("p");
+    categorieElement.innerText = piece.categorie;
+
+    // On rattache la balise article au body
+   
+    pieceElement.appendChild(imageElement);
+    pieceElement.appendChild(descriptionElement);
+    pieceElement.appendChild(nomElement);
+    pieceElement.appendChild(prixElement);
+    pieceElement.appendChild(categorieElement);
+    pieceElement.appendChild(disponibiliteElement);
+
+    sectionFiches.appendChild(pieceElement);
+};

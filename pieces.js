@@ -17,6 +17,19 @@ console.log("reponse de la requete fetch du fichier pieces-autos.json:",reponse)
 /*renvoit le status de la reponse de la requete fetch du package piece auto.json( en retournant la promesse avec la promesse resultat:   response ok ( statut text=ok) 
 et le statut 200 de la requete http de la page web) et affiche dans la console le corps de la requete et si tout c'est bien passé*/
 
-const pieces= await reponse.json();
+const pieces= await reponse.json(); /* recuperation de reponse= avec les données au formatjson et transformation en objet javascript avec fonction json()*/
 
 console.log("objet javascript pieces", pieces); /*retourne le tableau objet javascript du fichier pieces-autos.json tarnsformé avec la fonction json() */
+
+
+
+/* creation des elements du DOM*/
+const ampoule = pieces[0];
+const imageElement = document.createElement("img");
+imageElement.src = ampoule.image;
+const nomElement = document.createElement("h2");
+nomElement.innerText = ampoule.nom;
+const prixElement = document.createElement("p");
+prixElement.innerText = ampoule.prix;
+const categorieElement = document.createElement("p");
+categorieElement.innerText = ampoule.categorie;

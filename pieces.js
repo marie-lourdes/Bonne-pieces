@@ -26,11 +26,11 @@ console.log("objet javascript pieces", pieces); /*retourne le tableau objet java
 /* creation des elements du DOM*/
 const ampoule = pieces[0];
 const imageElement = document.createElement("img");
-imageElement.src = ampoule.image;
+imageElement.src = ampoule.image; 
 const nomElement = document.createElement("h2");
 nomElement.innerText = ampoule.nom;
 const prixElement = document.createElement("p");
-prixElement.innerText = "prix:" + " "+ (ampoule.prix < 35 ? ampoule.prix +"€" : ampoule.prix +"€€€");
+prixElement.innerText = "prix:" + " "+ (ampoule.prix < 35 ? ampoule.prix +"€" : ampoule.prix +"€€€"); /* operateur ternaire: condition, valeur true ,et valeur false*/
 const categorieElement = document.createElement("p");
 categorieElement.innerText = ampoule.categorie;
 
@@ -47,3 +47,12 @@ sectionFiches.appendChild(categorieElement);
 
 /* redimensionnement de l image de l'ampoule*/
 imageElement.style.width="25%";
+
+/* verification des donnée et test de valeur: test  avec nullish de la categorie essuie glace (ln55)  et test de prix avec  operateur ternaire de l ampoule .prix(ln33)*/
+console.log( "essuie glace valeur retourné",pieces[4].categorie);
+
+
+console.log( "test  nullish categorie essuie glace:", pieces[4].categorie ?? "aucune categorie"); 
+
+/* l'opérateur nullish ??, teste la presence de la valeur categorie  de l index  4 essuie glace
+ et renvoit une valeur de substitution =aucune categorie si valeur renvoyé est null ou undefined*/

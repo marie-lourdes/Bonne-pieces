@@ -46,3 +46,4 @@ sectionFiches.appendChild(prixElement);
 sectionFiches.appendChild(categorieElement);
 
 
+imageElement.style.width="25%";

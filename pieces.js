@@ -30,7 +30,7 @@ imageElement.src = ampoule.image;
 const nomElement = document.createElement("h2");
 nomElement.innerText = ampoule.nom;
 const prixElement = document.createElement("p");
-prixElement.innerText = ampoule.prix;
+prixElement.innerText = "prix:" + " "+ (ampoule.prix < 35 ? ampoule.prix +"€" : ampoule.prix +"€€€");
 const categorieElement = document.createElement("p");
 categorieElement.innerText = ampoule.categorie;
 
@@ -45,5 +45,5 @@ sectionFiches.appendChild(nomElement);
 sectionFiches.appendChild(prixElement);
 sectionFiches.appendChild(categorieElement);
 
-
+/* redimensionnement de l image de l'ampoule*/
 imageElement.style.width="25%";

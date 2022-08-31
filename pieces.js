@@ -177,26 +177,44 @@ boutonNodesc.addEventListener("click", function () {
 });
 
 
-/* AFFICHER UN RESUME DE PRODUIT */
+/* A -AFFICHER UN RESUME DE PRODUIT */
 
 /*1- FONCTION MAP POUR EXTRAIRE ET GENERER UNE LISTE(nom des pieces)AVEC LES DONNEES/VALEUR QUE L ON SOUHAITE AFFICHER DANS LE RESUME*/
 
 // recuperation du nom des pièces
 const noms = pieces.map(piece => piece.nom);
 
-console.log( "liste mappée:", noms);
+console.log( "liste mappée avec les noms:", noms);
 
 /* 2-  FONCTION SPLICE() POUR SUPPRIMER DE LA LISTE MAP "NOMS" LES NOM DES PIECES NON ABORDABLES*/
 
 // boucle for du debut vers la fin
 
 for (let i= pieces.length -1; i >=0; i--){
-    if( pieces[i].prix > 35){/* la condition verifie les prix du tableau pieces*/
+    if( pieces[i].prix < 35){/* la condition verifie les prix du tableau pieces*/
         noms.splice(i,1); 
     /* si la condition est verifié , il supprime le nom correspondant à l indice du tableau nom qui correspond sans le decalage avec avec length -1 aux indice du tableau pièces,
     et ne supprime pas le nom des pices du tableau pieces mais du tableau generé par map*/
     }
 }
+console.log( "liste map() avec noms des pieces et splice() avec les prix abordables inferieur à 35 euros", noms); 
+/* affiche tableau nom  des pieces avec map() et les prix abordable avec splice() qui supprime le nom des pieces non abordable >35*/
+
+
+/* 3-  AFFICHER LA LISTE DES ELEMENTS ABORDABLES AVEC LEUR NOM DE PIECES DONT LES PRIX SONT ABORDABLES*/
+
+// Création de l'élément ul
+const abordablesElement = document.createElement("ul");
+
+// Création et rattachement des éléments li
+for (let nom of noms) {
+     const nomElement = document.createElement("li");
+     nomElement.innerText = nom;
+     abordablesElement.appendChild(nomElement);
+}
+
+// Rattachement de toute la liste à la page
+document.querySelector(".abordables").appendChild(abordablesElement);
  
 
 

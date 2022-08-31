@@ -180,8 +180,23 @@ boutonNodesc.addEventListener("click", function () {
 /* AFFICHER UN RESUME DE PRODUIT */
 
 /*1- FONCTION MAP POUR EXTRAIRE ET GENERER UNE LISTE(nom des pieces)AVEC LES DONNEES/VALEUR QUE L ON SOUHAITE AFFICHER DANS LE RESUME*/
+
+// recuperation du nom des pièces
 const noms = pieces.map(piece => piece.nom);
 
 console.log( "liste mappée:", noms);
+
+/* 2-  FONCTION SPLICE() POUR SUPPRIMER DE LA LISTE MAP "NOMS" LES NOM DES PIECES NON ABORDABLES*/
+
+// boucle for du debut vers la fin
+
+for (let i= pieces.length -1; i >=0; i--){
+    if( pieces[i].prix > 35){/* la condition verifie les prix du tableau pieces*/
+        noms.splice(i,1); 
+    /* si la condition est verifié , il supprime le nom correspondant à l indice du tableau nom qui correspond sans le decalage avec avec length -1 aux indice du tableau pièces,
+    et ne supprime pas le nom des pices du tableau pieces mais du tableau generé par map*/
+    }
+}
+ 
 
 

@@ -103,12 +103,14 @@ console.log( "test  nullish categorie essuie glace:", pieces[4].categorie ?? "(a
     sectionFiches.appendChild(pieceElement);
 };
 
-/* ADD EVENT LISTENER DES BOUTONS TRIER ET FILTRER POUR INTERAGIR AVEC L CONTENU ET TRIER ET FILTRER*/
+/* ADD EVENT LISTENER DU BOUTONS TRIER POUR INTERAGIR AVEC L CONTENU ET TRIER PAR ORDRE CROISSANT DES PRIX*/
 
-const piecesReordonnees= Array.from(pieces); /* copie du tableau pieces car la fonction sort() modifie le tableau d origine pieces et l'ordre d origine des delemnt du tableau pieces*/
 
 const boutonTrier= document.querySelector(".btn-trier"); /* selection du selecteur de classe .btn-trier*/
 boutonTrier.addEventListener("click", function(){
+
+    const piecesReordonnees= Array.from(pieces); /* copie du tableau pieces car la fonction sort() modifie le tableau d origine pieces et l'ordre d origine des delemnt du tableau pieces*/
+
 
 /* la fonction anonyme de addevent listener execute des instaruction au clic du bouton, 
 ces instruction etant elle meme une fonction, la fonction sort() de tri des element du tableau pieces*/
@@ -119,6 +121,7 @@ ces instruction etant elle meme une fonction, la fonction sort() de tri des elem
 la fonction sort en fonction du resultat retourné par la fonction anonyme trier les element a et b*/
 
         return a.prix-b.prix;
+        
     });
 
     console.log("evenement clic trier",pieces) ;
@@ -127,6 +130,23 @@ la fonction sort en fonction du resultat retourné par la fonction anonyme trier
 
 /* affiche dans la console la nouvelle liste ordonné lors du clic sur le bouton trrier mais pas à l ecran, 
 il faut mettre a jour l ecran et regenerer le tableau pieces reordoonné au clic du bouton*/
+});
+
+/* ADD EVENT LISTENER DU BOUTON FILTRER POUR INTERAGIR AVEC LE CONTENU ET FILTRER PAR PRIX ABORDABLE ET NON ABORDABLE <35€*/
+
+
+const boutonFiltrer= document.querySelector(".btn-filtrer"); /* selection du selecteur de classe .btn-filtrer*/
+boutonFiltrer.addEventListener("click",function(){
+    const piecesFiltrees= pieces.filter(function(piece){ 
+
+    /* la fonction filter va filtrer le parametre piece, qui represente chaque element du tableau, 
+    et va filtrer un a un les elements du tableu pieces et retourner les elements dans un nouvelle liste stockée dans la constante piecesFiltrees*/
+        return piece.prix <= 35;
+        
+
+    });
+  
+   console.log("pieces filtré", piecesFiltrees);
 });
 
 

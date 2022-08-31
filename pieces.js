@@ -137,16 +137,51 @@ il faut mettre a jour l ecran et regenerer le tableau pieces reordoonné au clic
 
 const boutonFiltrer= document.querySelector(".btn-filtrer"); /* selection du selecteur de classe .btn-filtrer*/
 boutonFiltrer.addEventListener("click",function(){
+
     const piecesFiltrees= pieces.filter(function(piece){ 
 
-    /* la fonction filter va filtrer le parametre piece, qui represente chaque element du tableau, 
-    et va filtrer un a un les elements du tableu pieces et retourner les elements dans un nouvelle liste stockée dans la constante piecesFiltrees*/
+ /* la fonction filter va filtrer le parametre piece, qui represente chaque element du tableau, 
+et va filtrer un a un les elements du tableu pieces et retourner les elements dans un nouvelle liste stockée dans la constante piecesFiltrees,
+ pas besoin de copier un nouveau tableau pour ne pas modifier ce lui d origine car filter genere cette nouvelle qui est sotockée dans la constance piecs filtrees. 
+ Le tableau d origine n est pas modifié*/
         return piece.prix <= 35;
         
 
     });
   
-   console.log("pieces filtré", piecesFiltrees);
+   console.log("pieces filtré", piecesFiltrees);/* affiche la liste des 3 elements , les pieces filtrés au clic du bouton btn-filtrer*/
 });
+
+/* EXERCICE FILTRER  LA LISTE DES PIECES SELON SI IL Y A UNE DESCRIPTION ET  ORDONNER LA LISTE DE MANIERE DECROISSANTE*/
+
+// Ajout du listener pour trier les pièces par ordre de prix décroissant
+const boutonDecroissant = document.querySelector(".btn-decroissant");
+boutonDecroissant.addEventListener("click", function () {
+	const piecesReordonnees = Array.from(pieces);
+	piecesReordonnees.sort(function (a, b) {
+		// B - A (et pas A - B)
+		return b.prix - a.prix;
+	});
+	console.log("pieces reordonnees decroissant",piecesReordonnees);
+});
+
+// Ajout du listener pour filter les pièces sans description
+const boutonNodesc = document.querySelector(".btn-nodesc");
+boutonNodesc.addEventListener("click", function () {
+	const piecesFiltrees = pieces.filter(function (piece) {
+		return Boolean(piece.description); 
+    /* la fonction Boolean convertit description en valeur booleeene, ici la valeur de description est precisé et vaut true, la fonction filter ajoute à la liste*/
+
+	});
+	console.log("pieces filtrée uniquemnt ceux qui ont des description",piecesFiltrees);
+});
+
+
+/* AFFICHER UN RESUME DE PRODUIT */
+
+/*1- FONCTION MAP POUR EXTRAIRE ET GENERER UNE LISTE(nom des pieces)AVEC LES DONNEES/VALEUR QUE L ON SOUHAITE AFFICHER DANS LE RESUME*/
+const noms = pieces.map(piece => piece.nom);
+
+console.log( "liste mappée:", noms);
 
 

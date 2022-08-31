@@ -215,6 +215,46 @@ for (let nom of noms) {
 
 // Rattachement de toute la liste à la page
 document.querySelector(".abordables").appendChild(abordablesElement);
+
+/* EXERCICE AFFICHE RESUME DE PRODUIT AVEC LA DESCRIPTION DES PRODUITS ABORDABLES ET LE PRIX DES PIECES*/
  
+// Recuperation des nom des pieces et du prix
+const nomsDisponibles = pieces.map(piece => piece.nom);/* map extrait element par element du tableau pieces*/
+const prixDisponibles = pieces.map(piece => piece.prix);
+console.log(" resume nomDisponible map (nom) avant splice()", nomsDisponibles);
+
+
+
+ for (let i= pieces.length -1; i >=0; i--){
+   
+    if( pieces[i].disponibilite === false){/* la condition verifie la valeur false de la disponibilité du tableau pieces*/
+
+        nomsDisponibles.splice(i, 1);
+
+        prixDisponibles.splice(i, 1);
+/* la condtion verifie la valeur false des disponibilité, si c est false (donc verifié vrai), la liste des noms de pieces non disponible ( valeur false) sont supprimé un par un, 
+en synchronisant les iterations sur le i de la boucle for :
+avec les iterations sur le i de la piece du tableau pieces avec sa valeur disponible, 
+avec  les iterations sur le i du tableau mappée nom
+ et avec les iteration sur le i du tableau mappé prix   */
+
+      
+    };
+};
+const resumeDispoPrix="pieces disponibles :"+ nomsDisponibles + " " + "prix correspondants:"+prixDisponibles;
+console.log("resume nomDisponibles apres splice()", nomsDisponibles);
+console.log("resume nomsDisponible et prix:",resumeDispoPrix);
+
+
+
+const disponiblesElement = document.createElement("ul");
+
+for (let i = 0; i < nomsDisponibles.length; i++) {
+	const nomElement = document.createElement("li");
+	nomElement.innerText = nomsDisponibles[i] + " - " + prixDisponibles[i] + " €";
+	disponiblesElement.appendChild(nomElement);
+}
+
+document.querySelector(".disponibles").appendChild(disponiblesElement);
 
 

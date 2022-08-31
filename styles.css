@@ -46,7 +46,7 @@ main {
 	flex: 1;
 	margin: 8px;
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: repeat(2, 1fr);
 	gap: 4px;
 }
 .fiches article {
@@ -69,4 +69,8 @@ main {
 
 .abordables{
 	background:#7c8ec9;
+}
+
+.disponibles{
+	background:#e8adad;
 }

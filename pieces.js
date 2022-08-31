@@ -105,13 +105,15 @@ console.log( "test  nullish categorie essuie glace:", pieces[4].categorie ?? "(a
 
 /* ADD EVENT LISTENER DES BOUTONS TRIER ET FILTRER POUR INTERAGIR AVEC L CONTENU ET TRIER ET FILTRER*/
 
+const piecesReordonnees= Array.from(pieces); /* copie du tableau pieces car la fonction sort() modifie le tableau d origine pieces et l'ordre d origine des delemnt du tableau pieces*/
+
 const boutonTrier= document.querySelector(".btn-trier"); /* selection du selecteur de classe .btn-trier*/
 boutonTrier.addEventListener("click", function(){
 
 /* la fonction anonyme de addevent listener execute des instaruction au clic du bouton, 
 ces instruction etant elle meme une fonction, la fonction sort() de tri des element du tableau pieces*/
 
-    pieces.sort(function(a,b){ 
+    piecesReordonnees.sort(function(a,b){ 
 
 /* fonction tri et fonction anonyme a l interieur d la fonction sort() qui cacul le nombre a et b renvoit le resultat, 
 la fonction sort en fonction du resultat retourné par la fonction anonyme trier les element a et b*/
@@ -120,7 +122,11 @@ la fonction sort en fonction du resultat retourné par la fonction anonyme trier
     });
 
     console.log("evenement clic trier",pieces) ;
+    console.log( "tableau reordonne piecs copié", piecesReordonnees);/* Dans l affichage de la console au clic du bouton trier , le tableau  copié est reordonné et generé sans modifier le tableau d origine pieces,
+    si l on regarde a nouveau le tableau evenment clic trier du tableau d origine, l ordre est resté le meme, puisque le bouton tri et la fonction sort() se fait sur le tableau copié*/
 
 /* affiche dans la console la nouvelle liste ordonné lors du clic sur le bouton trrier mais pas à l ecran, 
 il faut mettre a jour l ecran et regenerer le tableau pieces reordoonné au clic du bouton*/
 });
+
+

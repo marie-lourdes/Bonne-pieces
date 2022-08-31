@@ -23,7 +23,7 @@ console.log("objet javascript pieces", pieces); /*retourne le tableau objet java
 
 
 
-/* creation des elements du DOM*/
+/* creation des elements du DOM: fiche produit ampoule*/
 const ampoule = pieces[0];
 const imageElement = document.createElement("img");
 imageElement.src = ampoule.image; 
@@ -65,6 +65,9 @@ console.log( "test  nullish categorie essuie glace:", pieces[4].categorie ?? "(a
  et renvoit une valeur de substitution =aucune categorie si valeur renvoyé est null ou undefined*/
 
 
+ /* GENERE ,CREER, ET AJOUTER TOUTES LES FICHES PRODUIT AVEC BOUCLE FOR ..OF*/
+
+
  for (let piece of pieces) {
     // Récupération de l'élément du DOM qui accueillera les fiches
     const sectionFiches = document.querySelector(".fiches");
@@ -76,21 +79,27 @@ console.log( "test  nullish categorie essuie glace:", pieces[4].categorie ?? "(a
     // Idem pour le nom, le prix et la catégorie...
     const imageElement = document.createElement("img");
     imageElement.src = piece.image; 
+    const descriptionElement = document.createElement("p");
+    descriptionElement.innerText = piece.description ?? "Pas de description pour le moment.";
     const nomElement = document.createElement("h2");
     nomElement.innerText = piece.nom;
     const prixElement = document.createElement("p");
     prixElement.innerText = "prix:" + " "+ piece.prix + "€" + " (" + (piece.prix < 35 ? "€" : "€€€") + ")"; 
     const categorieElement = document.createElement("p");
-    categorieElement.innerText = piece.categorie;
+    categorieElement.innerText = piece.categorie ?? "(aucune catégorie)";
+    const disponibiliteElement = document.createElement("p");
+    disponibiliteElement.innerText = piece.disponibilite ? "En stock" : "Rupture de stock";
+  
 
     // On rattache la balise article au body
    
     pieceElement.appendChild(imageElement);
-    pieceElement.appendChild(descriptionElement);
     pieceElement.appendChild(nomElement);
+    pieceElement.appendChild(descriptionElement);
     pieceElement.appendChild(prixElement);
     pieceElement.appendChild(categorieElement);
     pieceElement.appendChild(disponibiliteElement);
 
     sectionFiches.appendChild(pieceElement);
 };
+categorieElement.innerText=pieces[4].categorie ?? "(aucune categorie)";

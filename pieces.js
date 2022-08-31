@@ -102,4 +102,25 @@ console.log( "test  nullish categorie essuie glace:", pieces[4].categorie ?? "(a
 
     sectionFiches.appendChild(pieceElement);
 };
-categorieElement.innerText=pieces[4].categorie ?? "(aucune categorie)";
+
+/* ADD EVENT LISTENER DES BOUTONS TRIER ET FILTRER POUR INTERAGIR AVEC L CONTENU ET TRIER ET FILTRER*/
+
+const boutonTrier= document.querySelector(".btn-trier"); /* selection du selecteur de classe .btn-trier*/
+boutonTrier.addEventListener("click", function(){
+
+/* la fonction anonyme de addevent listener execute des instaruction au clic du bouton, 
+ces instruction etant elle meme une fonction, la fonction sort() de tri des element du tableau pieces*/
+
+    pieces.sort(function(a,b){ 
+
+/* fonction tri et fonction anonyme a l interieur d la fonction sort() qui cacul le nombre a et b renvoit le resultat, 
+la fonction sort en fonction du resultat retourné par la fonction anonyme trier les element a et b*/
+
+        return a.prix-b.prix;
+    });
+
+    console.log("evenement clic trier",pieces) ;
+
+/* affiche dans la console la nouvelle liste ordonné lors du clic sur le bouton trrier mais pas à l ecran, 
+il faut mettre a jour l ecran et regenerer le tableau pieces reordoonné au clic du bouton*/
+});

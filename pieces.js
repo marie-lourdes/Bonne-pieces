@@ -1,3 +1,5 @@
+
+ 
 // recuperation des pieces depuis le fichier JSON
 
 /*La méthode json() de l'interface Response prend un flux Response et le lit jusqu'à la fin. 
@@ -19,8 +21,10 @@ et le statut 200 de la requete http de la page web) et affiche dans la console l
 
 const pieces= await reponse.json(); /* recuperation de reponse= avec les données au formatjson et transformation en objet javascript avec fonction json()*/
 
-console.log("objet javascript pieces", pieces); /*retourne le tableau objet javascript du fichier pieces-autos.json tarnsformé avec la fonction json() 
+console.log("objet javascript pieces", pieces); /*retourne le tableau objet javascript du fichier pieces-autos.json tarnsformé avec la fonction json() */
 
+const requet= fetch("https://localhost8081/pieces");
+console.log("requete serveur",requet)
 
  /* GENERE ,CREER, ET AJOUTER TOUTES LES FICHES PRODUIT AVEC BOUCLE FOR ..OF*/
 

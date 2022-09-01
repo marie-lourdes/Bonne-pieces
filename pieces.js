@@ -24,7 +24,7 @@ console.log("objet javascript pieces", pieces); /*retourne le tableau objet java
 
  /* GENERE ,CREER, ET AJOUTER TOUTES LES FICHES PRODUIT AVEC BOUCLE FOR ..OF*/
 
-function genererPage(){
+function genererPage(pieces){
  for (let piece of pieces) {
     // Récupération de l'élément du DOM qui accueillera les fiches
     const sectionFiches = document.querySelector(".fiches");
@@ -37,7 +37,7 @@ function genererPage(){
     const imageElement = document.createElement("img");
     imageElement.src = piece.image; 
     const descriptionElement = document.createElement("p");
-    descriptionElement.innerText = piece.description ?? "Pas de description pour le moment.";
+    descriptionElement.innerText = piece.description ?? "Aucune description pour le moment";
     const nomElement = document.createElement("h2");
     nomElement.innerText = piece.nom;
     const prixElement = document.createElement("p");
@@ -145,7 +145,7 @@ text.innerHTML="<p>heuh</p>";/* affiche la balise p inner html,avec innerText af
 document.body.appendChild(text)
 console.log(text)
 };
-genererPage();
+genererPage(pieces);
 
 
 /* ADD EVENT LISTENER DU BOUTONS TRIER POUR INTERAGIR AVEC L CONTENU ET TRIER PAR ORDRE CROISSANT DES PRIX*/
@@ -193,6 +193,8 @@ et va filtrer un a un les elements du tableu pieces et retourner les elements da
         
 
     });
+    document.querySelector(".fiches").innerHTML = "";
+    genererPage(piecesFiltrees);
   
    console.log("pieces filtré", piecesFiltrees);/* affiche la liste des 3 elements , les pieces filtrés au clic du bouton btn-filtrer*/
 });
@@ -207,6 +209,8 @@ boutonDecroissant.addEventListener("click", function () {
 		// B - A (et pas A - B)
 		return b.prix - a.prix;
 	});
+   
+   
 	console.log("pieces reordonnees decroissant",piecesReordonnees);
 });
 
@@ -218,6 +222,8 @@ boutonNodesc.addEventListener("click", function () {
     /* la fonction Boolean convertit description en valeur booleeene, ici la valeur de description est precisé et vaut true, la fonction filter ajoute à la liste*/
 
 	});
+    document.querySelector(".fiches").innerHTML = "";
+    genererPage(piecesFiltrees);
 	console.log("pieces filtrée uniquemnt ceux qui ont des description",piecesFiltrees);
 });
 

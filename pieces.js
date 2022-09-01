@@ -140,6 +140,12 @@ for (let i = 0; i < nomsDisponibles.length; i++) {
 
 document.querySelector(".disponibles").appendChild(disponiblesElement);
 
+// Bouton pour afficher les avis
+const avisElement = document.createElement("button");
+avisElement.innerText = "Afficher les avis";
+avisElement.dataset.id = pieces[i].id; // Attribut data-id="XX"
+pieceElement.appendChild(avisElement);
+
 const text=document.createElement("section")/* d abord stocker l element creer dans une variable*/
 text.innerHTML="<p>heuh</p>";/* affiche la balise p inner html,avec innerText affiche un texte une chaine de caractere */
 document.body.appendChild(text)

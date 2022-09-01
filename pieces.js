@@ -257,4 +257,7 @@ for (let i = 0; i < nomsDisponibles.length; i++) {
 
 document.querySelector(".disponibles").appendChild(disponiblesElement);
 
-
+const text=document.createElement("section")/* d abord stocker l element creer dans une variable*/
+text.innerHTML="<p>heuh</p>";/* affiche la balise p inner html,avec innerText affiche un texte une chaine de caractere */
+document.body.appendChild(text)
+console.log(text)

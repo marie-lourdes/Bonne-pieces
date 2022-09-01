@@ -32,6 +32,8 @@ function genererPage(pieces){ /* creation de la fonction generer page avec en pa
     // Création d’une balise dédiée à une pièce automobile
     const pieceElement = document.createElement("article");
 
+  
+
 
     // Idem pour le nom, le prix et la catégorie...
     const imageElement = document.createElement("img");
@@ -46,6 +48,9 @@ function genererPage(pieces){ /* creation de la fonction generer page avec en pa
     categorieElement.innerText = piece.categorie ?? "(aucune catégorie)";
     const disponibiliteElement = document.createElement("p");
     disponibiliteElement.innerText = piece.disponibilite ? "En stock" : "Rupture de stock";
+
+     
+     
   
 
     // On rattache la balise article au body
@@ -58,6 +63,14 @@ function genererPage(pieces){ /* creation de la fonction generer page avec en pa
     pieceElement.appendChild(disponibiliteElement);
 
     sectionFiches.appendChild(pieceElement);
+
+      // Bouton pour afficher les avis
+		const avisElement = document.createElement("button");
+		avisElement.innerText = "Afficher les avis";
+		avisElement.dataset.id = piece.id; // Attribut data-id="XX"
+		pieceElement.appendChild(avisElement);
+
+  
 };
 
 /* A -AFFICHER UN RESUME DE PRODUIT */
@@ -140,11 +153,7 @@ for (let i = 0; i < nomsDisponibles.length; i++) {
 
 document.querySelector(".disponibles").appendChild(disponiblesElement);
 
-// Bouton pour afficher les avis
-const avisElement = document.createElement("button");
-avisElement.innerText = "Afficher les avis";
-avisElement.dataset.id = pieces[i].id; // Attribut data-id="XX"
-pieceElement.appendChild(avisElement);
+
 
 const text=document.createElement("section")/* d abord stocker l element creer dans une variable*/
 text.innerHTML="<p>heuh</p>";/* affiche la balise p inner html,avec innerText affiche un texte une chaine de caractere */

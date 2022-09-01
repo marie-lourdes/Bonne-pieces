@@ -170,7 +170,8 @@ la fonction sort en fonction du resultat retourné par la fonction anonyme trier
     });
 
     console.log("evenement clic trier",pieces) ;
-    console.log( "tableau reordonne piecs copié", piecesReordonnees);/* Dans l affichage de la console au clic du bouton trier , le tableau  copié est reordonné et generé sans modifier le tableau d origine pieces,
+    console.log( "tableau reordonne piecs copié", piecesReordonnees);
+    /* Dans l affichage de la console au clic du bouton trier , le tableau  copié est reordonné et generé sans modifier le tableau d origine pieces,
     si l on regarde a nouveau le tableau evenment clic trier du tableau d origine, l ordre est resté le meme, puisque le bouton tri et la fonction sort() se fait sur le tableau copié*/
 
 /* affiche dans la console la nouvelle liste ordonné lors du clic sur le bouton trrier mais pas à l ecran, 
@@ -227,7 +228,7 @@ boutonNodesc.addEventListener("click", function () {
 	console.log("pieces filtrée uniquemnt ceux qui ont des description",piecesFiltrees);
 });
 
-// Ajout du listener input pour filter les pièces non abordables
+// EXERCICE Ajout du listener input pour filtrer les prix avec barre de progression
 const inputPrixMax = document.querySelector("#prix-max");
 inputPrixMax.addEventListener("input", function () {
 	const piecesFiltrees = pieces.filter(function (piece) {/* la fonction filter() ajouter element par element et genere un tableau, 

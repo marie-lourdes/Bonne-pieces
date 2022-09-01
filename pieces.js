@@ -24,7 +24,7 @@ console.log("objet javascript pieces", pieces); /*retourne le tableau objet java
 
  /* GENERE ,CREER, ET AJOUTER TOUTES LES FICHES PRODUIT AVEC BOUCLE FOR ..OF*/
 
-function genererPage(pieces){
+function genererPage(pieces){ /* creation de la fonction generer page avec en paramtre nommé pieces*/
  for (let piece of pieces) {
     // Récupération de l'élément du DOM qui accueillera les fiches
     const sectionFiches = document.querySelector(".fiches");
@@ -145,7 +145,7 @@ text.innerHTML="<p>heuh</p>";/* affiche la balise p inner html,avec innerText af
 document.body.appendChild(text)
 console.log(text)
 };
-genererPage(pieces);
+genererPage(pieces);/* Appel de la fonction avec pour arguments le tableau pieces*/
 
 
 /* ADD EVENT LISTENER DU BOUTONS TRIER POUR INTERAGIR AVEC L CONTENU ET TRIER PAR ORDRE CROISSANT DES PRIX*/
@@ -193,8 +193,8 @@ et va filtrer un a un les elements du tableu pieces et retourner les elements da
         
 
     });
-    document.querySelector(".fiches").innerHTML = "";
-    genererPage(piecesFiltrees);
+    document.querySelector(".fiches").innerHTML = ""; /* effacement de l ecran*/
+    genererPage(piecesFiltrees);/*regenration de la page avec le tableau filtree*/
   
    console.log("pieces filtré", piecesFiltrees);/* affiche la liste des 3 elements , les pieces filtrés au clic du bouton btn-filtrer*/
 });
@@ -214,7 +214,7 @@ boutonDecroissant.addEventListener("click", function () {
 	console.log("pieces reordonnees decroissant",piecesReordonnees);
 });
 
-// Ajout du listener pour filter les pièces sans description
+// Ajout du listener pour filter les pièces avec description
 const boutonNodesc = document.querySelector(".btn-nodesc");
 boutonNodesc.addEventListener("click", function () {
 	const piecesFiltrees = pieces.filter(function (piece) {
@@ -222,8 +222,24 @@ boutonNodesc.addEventListener("click", function () {
     /* la fonction Boolean convertit description en valeur booleeene, ici la valeur de description est precisé et vaut true, la fonction filter ajoute à la liste*/
 
 	});
-    document.querySelector(".fiches").innerHTML = "";
-    genererPage(piecesFiltrees);
+    document.querySelector(".fiches").innerHTML = "";/* effacement de l ecran*/
+    genererPage(piecesFiltrees); /*regenration de la page avec le tableau filtree*/
 	console.log("pieces filtrée uniquemnt ceux qui ont des description",piecesFiltrees);
+});
+
+// Ajout du listener input pour filter les pièces non abordables
+const inputPrixMax = document.querySelector("#prix-max");
+inputPrixMax.addEventListener("input", function () {
+	const piecesFiltrees = pieces.filter(function (piece) {/* la fonction filter() ajouter element par element et genere un tableau, 
+ pour executer cette fonction il lui faut une valeur booleen qui est introduit avec le comparateur <= des valeurs que le filter doit ajouter 
+apres le calcul de comparaison et le resultat retourné de sa fontion call back*/
+		return piece.prix <= inputPrixMax.value; 
+ /* a chaque manipulation de la barre de progression une valeur est indiquer et filter ()retourne element par element dans un tableau les valeurs en dessous
+  ( qui sont les valeurs true pour la fonction filter())de la valeur max indiqué avec la barre de progression, la barre de progression est segmenté en 5 partie step=5*/
+	});
+
+	// Effacement de l'écran et regénération de la page avec les pieces filtrées uniquement
+	document.querySelector(".fiches").innerHTML = "";
+	genererPage(piecesFiltrees);
 });
 

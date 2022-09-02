@@ -1,6 +1,10 @@
 
- 
-// recuperation des pieces depuis le fichier JSON
+/* AJOUT DE LA FONCTION "ajoutListenrAvis" CREE DANS LE FICHIER AVIS.JS*/
+  
+  import {ajoutListenerAvis} from "./avis.js"; 
+
+
+/* RECUPERATION DES PIECES DEPUIS LE FICHIER PIECES  DE L API-HTTP*/
 
 /*La méthode json() de l'interface Response prend un flux Response et le lit jusqu'à la fin. 
 Il renvoie une promesse qui se résout avec le résultat de l'analyse du corps du texte en tant que JSON.
@@ -10,11 +14,6 @@ et de son analyse pour produire un objet JavaScript. pieces[]   */
 
  /* await implique d'avoir avec link js async ou au debut avec un type module du fichier pieces js*/
  
-
-
-
-
-
 
 const requet= await  fetch("http://localhost:8081/pieces");
 
@@ -80,6 +79,9 @@ function genererPage(pieces){ /* creation de la fonction generer page avec en pa
 
   
 };
+/* APPEL DE LA FONCTION LISTENER BUTTON POUR AFFICHER LES AVIS*/
+
+ajoutListenerAvis();
 
 /* A -AFFICHER UN RESUME DE PRODUIT */
 

@@ -1,7 +1,7 @@
 
 /* AJOUT DE LA FONCTION "ajoutListenrAvis" CREE DANS LE FICHIER AVIS.JS*/
   
-  import {ajoutListenerAvis} from "./avis.js"; 
+  import {ajoutListenersAvis} from "./avis.js"; 
 
 
 /* RECUPERATION DES PIECES DEPUIS LE FICHIER PIECES  DE L API-HTTP*/
@@ -21,11 +21,11 @@ const pieces= await requet.json(); /* recuperation de requet= avec les données 
 /* verification de la requete du fichier piece-autos.json*/
 console.log("requete serveur",requet)
  
-/*renvoit le status de la reponse de la requete fetch du package piece auto.json( en retournant la promesse avec la promesse resultat:   response ok ( statut text=ok) 
+/*renvoit le status de la reponse de la requete fetch des donnes pieces de l api-http( en retournant la promesse avec la promesse resultat:   response ok ( statut text=ok) 
 et le statut 200 de la requete http de la page web) et affiche dans la console le corps de la requete et si tout c'est bien passé*/
 
 console.log("objet javascript pieces", pieces); 
-/*retourne le tableau objet javascript du fichier pieces-autos.json tarnsformé avec la fonction json(), si je ne le transforma pas en objet, la variable pieces affiche juste la reponse comme la variable requete et n affiche pas l objet javascript qu on souhaite manipuler et integrer dans la page web */
+/*retourne le tableau objet javascript de la reponse promesse de  fetch des données pieces tarnsformé avec la fonction json(), si je ne le transforma pas en objet, la variable pieces affiche juste la reponse comme la variable requete et n affiche pas l objet javascript qu on souhaite manipuler et integrer dans la page web */
 
 
 
@@ -81,7 +81,7 @@ function genererPage(pieces){ /* creation de la fonction generer page avec en pa
 };
 /* APPEL DE LA FONCTION LISTENER BUTTON POUR AFFICHER LES AVIS*/
 
-ajoutListenerAvis();
+ajoutListenersAvis();
 
 /* A -AFFICHER UN RESUME DE PRODUIT */
 

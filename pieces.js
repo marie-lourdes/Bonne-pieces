@@ -8,23 +8,27 @@ Notez que bien que la méthode soit nommée json(), le résultat n'est pas JSON 
 et de son analyse pour produire un objet JavaScript. pieces[]   */
 
 
- const reponse=  await fetch("pieces-autos.json"); /* await implique d'avoir avec link js async ou au debut avec un type module du fichier pieces js*/
+ /* await implique d'avoir avec link js async ou au debut avec un type module du fichier pieces js*/
  
 
 
 
-/* verification de la requete du fichier piece-autos.json*/
 
-console.log("reponse de la requete fetch du fichier pieces-autos.json:",reponse); 
+
+
+const requet= await  fetch("http://localhost:8081/pieces");
+
+const pieces= await requet.json(); /* recuperation de requet= avec les données de l api-http au format json et transformation en objet javascript avec fonction json()*/
+/* verification de la requete du fichier piece-autos.json*/
+console.log("requete serveur",requet)
+ 
 /*renvoit le status de la reponse de la requete fetch du package piece auto.json( en retournant la promesse avec la promesse resultat:   response ok ( statut text=ok) 
 et le statut 200 de la requete http de la page web) et affiche dans la console le corps de la requete et si tout c'est bien passé*/
 
-const pieces= await reponse.json(); /* recuperation de reponse= avec les données au formatjson et transformation en objet javascript avec fonction json()*/
+console.log("objet javascript pieces", pieces); 
+/*retourne le tableau objet javascript du fichier pieces-autos.json tarnsformé avec la fonction json(), si je ne le transforma pas en objet, la variable pieces affiche juste la reponse comme la variable requete et n affiche pas l objet javascript qu on souhaite manipuler et integrer dans la page web */
 
-console.log("objet javascript pieces", pieces); /*retourne le tableau objet javascript du fichier pieces-autos.json tarnsformé avec la fonction json() */
 
-const requet= fetch("https://localhost8081/pieces");
-console.log("requete serveur",requet)
 
  /* GENERE ,CREER, ET AJOUTER TOUTES LES FICHES PRODUIT AVEC BOUCLE FOR ..OF*/
 

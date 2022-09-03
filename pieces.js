@@ -4,7 +4,7 @@
   import {ajoutListenersAvis} from "./avis.js"; 
 
   /* recupere la clé piece enregistré setItem du localStorage, recupere les donnees pieces eventuellment stockées dans le localstorage*/
- let pieces= window.localStorage.getItem("piece");
+ let pieces= window.localStorage.getItem("pieces");
 
  /* si il n y a pas de valeur de la variables pieces stockées dans le localstorage lors de la tentative de recuperation getItem, 
  la fonction getItem renvoit la valeur null et charge la page depuis l api-http*/
@@ -38,7 +38,7 @@
     /*transformation des données pièces en JSON*/
     const valeurPieces= JSON.stringify(pieces);/* transforme les donnees en chaine de caractere au format json*/
     /* stockage des donnees pieces de l'api-http dans le localstorage au format json*/
-    window.localStorage.setItem("piece",valeurPieces);/* argument1 clé, argument2 valeur*/
+    window.localStorage.setItem("pieces",valeurPieces);/* argument1 clé, argument2 valeur*/
  } else { /* sinon on les reconstruit en memoire, inverse l action de JSON.stringify()*/
     pieces= JSON.parse(pieces);/*analyse la chaine de caractere et construit la valeur javascript ou l objet decrit par ctte chaine de caractere javascript*/
  }
@@ -282,3 +282,18 @@ apres le calcul de comparaison et le resultat retourné de sa fontion call back*
 	genererPage(piecesFiltrees);
 });
 
+
+/* AJOUT DU LISTENER BOUTON METTRE A JOUR PIECE*/
+/* Le bouton de mise a jour efface les données stockées dans le localStorage, la page chargera les données et la dernière version de l api-http dans la condition if 
+et reengeristre les nouvelle données de l api-http lors de la  session sur le localStorage,
+ ou les données du localstorage ne sera pas vide lors de la prochaine seesion, la valeur ne sera pas null
+ mais avec les pieces enregistree de l api-http de la derniere session*/
+ const btnMettreAJour= document.querySelector(".btn-maj");
+ btnMettreAJour.addEventListener("click", function(){
+    const update= window.localStorage.removeItem("pieces");/* efface la valeur de la clé piece stockée setItem dans le localStorage*/ 
+     console.log( "button mise a jour",pieces);
+ });
+
+ /* si je raffraichis la page et ue j  appuer la le bouton mettre a jour la console api-http renvoit une nouvelle requette 200 
+ et si je raffraichis la page et ssans avoir appuyer sur le bouton mettre a jour la console api http n envoit pas de nouvelle requette 200, les données sont chargé a partir du localstorage
+ si j enleve le remove item l api revoit le code 304  redirection sur ressource mise en cache qui est ici le localstorage*/

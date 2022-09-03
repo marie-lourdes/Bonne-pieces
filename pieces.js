@@ -2,36 +2,46 @@
 /* AJOUT DE LA FONCTION "ajoutListenrAvis" CREE DANS LE FICHIER AVIS.JS*/
   
   import {ajoutListenersAvis} from "./avis.js"; 
- let pieces= window.localStorage.getItem("piece");/* recupere la clé piece enregistré setItem du localStorage*/
 
-/* RECUPERATION DES PIECES DEPUIS LE FICHIER PIECES  DE L API-HTTP*/
+  /* recupere la clé piece enregistré setItem du localStorage, recupere les donnees pieces eventuellment stockées dans le localstorage*/
+ let pieces= window.localStorage.getItem("piece");
 
-/*La méthode json() de l'interface Response prend un flux Response et le lit jusqu'à la fin. 
-Il renvoie une promesse qui se résout avec le résultat de l'analyse du corps du texte en tant que JSON.
-Notez que bien que la méthode soit nommée json(), le résultat n'est pas JSON mais plutôt le résultat de la prise de JSON en entrée 
-et de son analyse pour produire un objet JavaScript. pieces[]   */
+ /* si il n y a pas de valeur de la variables pieces stockées dans le localstorage lors de la tentative de recuperation getItem, 
+ la fonction getItem renvoit la valeur null et charge la page depuis l api-http*/
+
+ if(pieces === null){
+    /* RECUPERATION DES PIECES DEPUIS LE FICHIER PIECES  DE L API-HTTP*/
+
+    /*La méthode json() de l'interface Response prend un flux Response et le lit jusqu'à la fin. 
+    Il renvoie une promesse qui se résout avec le résultat de l'analyse du corps du texte en tant que JSON.
+    Notez que bien que la méthode soit nommée json(), le résultat n'est pas JSON mais plutôt le résultat de la prise de JSON en entrée 
+    et de son analyse pour produire un objet JavaScript. pieces[]   */
 
 
- /* await implique d'avoir avec link js async ou au debut avec un type module du fichier pieces js*/
- 
+    /* await implique d'avoir avec link js async ou au debut avec un type module du fichier pieces js*/
+    
 
-const requet= await  fetch("http://localhost:8081/pieces");
+    const requet= await  fetch("http://localhost:8081/pieces");
 
- pieces= await requet.json(); /* recuperation de requet= avec les données de l api-http au format json et transformation en objet javascript avec fonction json()*/
-/* verification de la requete du fichier piece-autos.json*/
-console.log("requete serveur",requet)
- 
-/*renvoit le status de la reponse de la requete fetch des donnes pieces de l api-http( en retournant la promesse avec la promesse resultat:   response ok ( statut text=ok) 
-et le statut 200 de la requete http de la page web) et affiche dans la console le corps de la requete et si tout c'est bien passé*/
+    pieces= await requet.json(); /* recuperation de requet= avec les données de l api-http au format json et json() analyse les données en json et transforme en objet javascript avec fonction json()*/
+    /* verification de la requete du fichier piece-autos.json*/
+    console.log("requete serveur",requet)
+    
+    /*renvoit le status de la reponse de la requete fetch des donnes pieces de l api-http( en retournant la promesse avec la promesse resultat:   response ok ( statut text=ok) 
+    et le statut 200 de la requete http de la page web) et affiche dans la console le corps de la requete et si tout c'est bien passé*/
 
-console.log("objet javascript pieces", pieces); 
-/*retourne le tableau objet javascript de la reponse promesse de  fetch des données pieces tarnsformé avec la fonction json(), si je ne le transforma pas en objet, la variable pieces affiche juste la reponse comme la variable requete et n affiche pas l objet javascript qu on souhaite manipuler et integrer dans la page web */
+    console.log("objet javascript pieces", pieces); 
+    /*retourne le tableau objet javascript de la reponse promesse de  fetch des données pieces tarnsformé avec la fonction json(), si je ne le transforma pas en objet, la variable pieces affiche juste la reponse comme la variable requete et n affiche pas l objet javascript qu on souhaite manipuler et integrer dans la page web */
 
-/*transformation des données pièces en JSON*/
-const valeurPieces= JSON.stringify(pieces);
-/* stockage des donnees pieces dans le localstorage au format json*/
-window.localStorage.setItem("piece",valeurPieces);/* argument1 clé, argument2 valeur*/
 
+    /*STOCKAGE DES DONN2ES PIECES DE L API-HTTP DANS LE LOCALSTORAGE*/
+    /*transformation des données pièces en JSON*/
+    const valeurPieces= JSON.stringify(pieces);/* transforme les donnees en chaine de caractere au format json*/
+    /* stockage des donnees pieces de l'api-http dans le localstorage au format json*/
+    window.localStorage.setItem("piece",valeurPieces);/* argument1 clé, argument2 valeur*/
+ } else { /* sinon on les reconstruit en memoire, inverse l action de JSON.stringify()*/
+    pieces= JSON.parse(pieces);/*analyse la chaine de caractere et construit la valeur javascript ou l objet decrit par ctte chaine de caractere javascript*/
+ }
  /* GENERE ,CREER, ET AJOUTER TOUTES LES FICHES PRODUIT AVEC BOUCLE FOR ..OF*/
 
 function genererPage(pieces){ /* creation de la fonction generer page avec en paramtre nommé pieces*/

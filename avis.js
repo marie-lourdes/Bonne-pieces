@@ -22,7 +22,7 @@ export function ajoutListenersAvis() {
             const avisElement = document.createElement("p");
 
             for (let i = 0; i < avis.length; i++) {
-                avisElement.innerHTML += avis[i].utilisateur + ': ' + avis[i].commentaire + '<br>'; 
+                avisElement.innerHTML += avis[i].utilisateur + ': ' + avis[i].commentaire + " " + avis[i].nbEtoiles + '<br>'; 
                 pieceElement.appendChild(avisElement);
                 console.log( "avis elemnt apres la boucle", avisElement)
                 /* hors de la boucle l affichage de l avis element n apparait qu une fois avec les avis additionné dans la varible avis elemnt qui sont eux incrementé parcouru par la boucle for*/
@@ -52,6 +52,7 @@ avisformulaire.addEventListener("submit", function(event){/* l objet de referenc
         pieceId:event.target.querySelector("[name=piece-id]").value,
 
         utilisateur:event.target.querySelector("[name=utilisateur]").value,
+        nbEtoiles: event.target.querySelector("[name=nb-etoiles]").value,
 
          /* queryselector utilise les selecteur css, pour les attribut les valeur de l attribut sont entre guillement, en js les valeur(utilisateur) de l attribut(name) n ont pas de guillemet*/
         commentaire:event.target.querySelector("[name=commentaire]").value

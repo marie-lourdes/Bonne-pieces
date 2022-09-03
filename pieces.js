@@ -27,7 +27,10 @@ et le statut 200 de la requete http de la page web) et affiche dans la console l
 console.log("objet javascript pieces", pieces); 
 /*retourne le tableau objet javascript de la reponse promesse de  fetch des données pieces tarnsformé avec la fonction json(), si je ne le transforma pas en objet, la variable pieces affiche juste la reponse comme la variable requete et n affiche pas l objet javascript qu on souhaite manipuler et integrer dans la page web */
 
-
+/*transformation des données pièces en JSON*/
+const valeurPieces= JSON.stringify(pieces);
+/* stockage des donnees pieces dans le localstorage au format json*/
+window.localStorage.setItem("piece",valeurPieces);/* argument1 clé, argument2 valeur*/
 
  /* GENERE ,CREER, ET AJOUTER TOUTES LES FICHES PRODUIT AVEC BOUCLE FOR ..OF*/
 

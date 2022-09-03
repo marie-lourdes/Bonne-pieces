@@ -27,13 +27,16 @@
 
 				<h3>Ajouter un avis</h3>
 				<form class="formulaire-avis">
-					Identifiant de la pièce :<br>
-					<input type="number" name="piece-id"><br>
-					Nom d'utilisateur :<br>
-					<input type="text" name="utilisateur"><br>
-					Avis :<br>
-					<textarea type="text" name="commentaire"></textarea><br>
-					<button>Envoyer</button>
+					<label for="idPiece">Identifiant de la pièce:</label>
+					<br>
+					<input type="number" id="idPiece" name="piece-id"><br>
+					<label for="utilisateur">Nom utilisateur:</label>
+					<br>
+					<input type="text" id="utilisateur" name="utilisateur"><br>
+					<label for="commentaire">Avis:</label>
+					<br>
+					<textarea type="text" id="commentaire" name="commentaire"></textarea><br>
+					<button type="submit">Envoyer</button><!-- le type submit n est pas obligatoire avec l evenment listener submit du bouton-->
 				</form>
 				
 				

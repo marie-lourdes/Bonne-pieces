@@ -2,7 +2,7 @@
 /* AJOUT DE LA FONCTION "ajoutListenrAvis" CREE DANS LE FICHIER AVIS.JS*/
   
   import {ajoutListenersAvis} from "./avis.js"; 
-
+ let pieces= window.localStorage.getItem("piece");/* recupere la clé piece enregistré setItem du localStorage*/
 
 /* RECUPERATION DES PIECES DEPUIS LE FICHIER PIECES  DE L API-HTTP*/
 
@@ -17,7 +17,7 @@ et de son analyse pour produire un objet JavaScript. pieces[]   */
 
 const requet= await  fetch("http://localhost:8081/pieces");
 
-const pieces= await requet.json(); /* recuperation de requet= avec les données de l api-http au format json et transformation en objet javascript avec fonction json()*/
+ pieces= await requet.json(); /* recuperation de requet= avec les données de l api-http au format json et transformation en objet javascript avec fonction json()*/
 /* verification de la requete du fichier piece-autos.json*/
 console.log("requete serveur",requet)
  

@@ -34,3 +34,50 @@ export function ajoutListenersAvis() {
 		});
 	}
 }
+
+/* RECUPERER, SAUVEGARDER ou CREER AVISUTILISATEUR DANS LA TABLE AVIS AVEC LES AVIS AJOUTÉ  DANS LE FORMULAIRE PAR LES UTILISATEURS DEPUIS LA PAGE WEB*/
+
+ /* recuperer la reference au formulaire*/
+
+const avisformulaire= document.querySelector(".formulaire-avis");
+
+/* recuperer les données du formulaire avec addEventListener*/
+
+avisformulaire.addEventListener("submit", function(event){/* l objet de reference à l evenement "event" contient les donnees de l element qui declenche l evenement*/
+    event.preventDefault(); /* desactivation du comportement par defaut du bouton submit du formulaire*/
+    /*A- recuperer les valeurs des champs du formulaire et le transmettre dans la table avis avec l 'objet avisUtilisateur*/
+
+    const avisUtilisateur= {
+
+        pieceId:event.target.querySelector("[name=piece-id]").value,
+
+        utilisateur:event.target.querySelector("[name=utilisateur]").value,
+
+         /* queryselector utilise les selecteur css, pour les attribut les valeur de l attribut sont entre guillement, en js les valeur(utilisateur) de l attribut(name) n ont pas de guillemet*/
+        commentaire:event.target.querySelector("[name=commentaire]").value
+
+    };
+
+    console.log("avis utilisateur avant la transformation au format json:", avisUtilisateur);
+
+    /* transformer l objet avisUtilisateur en chaine de caractere au format json pour le transmettre dans le corps de la requête*/
+
+     const chargeUtile= JSON.stringify(avisUtilisateur);
+
+     console.log("avis utilisateur au format json:", chargeUtile);
+
+     /* transmettre les donnes utlisateur dans la table avis avec POST fetch*/
+     const requetePost= fetch("http://localhost:8081/avis",{   /* deuxieme argument de la requete fetch: la configuration de la requete sous forme d 'objet*/
+                method:"POST",
+                headers: {"content-type":"application/json"},
+                body: chargeUtile /* recuperation des données avisUtilisateur  transformé au format json dans la variable chargeUtile et insertion des données dans le corps de la requête*/
+      });
+      console.log("requete post:", requetePost);
+
+});
+
+
+
+/*B- AFFICHER DANS LE DOM LES AVIS AJOUTÉ AVEC LA FONCTION AJOUTLISTENER AVIS*/
+
+

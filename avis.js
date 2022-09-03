@@ -23,11 +23,13 @@ export function ajoutListenersAvis() {
 
             for (let i = 0; i < avis.length; i++) {
                 avisElement.innerHTML += avis[i].utilisateur + ': ' + avis[i].commentaire + '<br>'; 
+                pieceElement.appendChild(avisElement);
+                console.log( "avis elemnt apres la boucle", avisElement)
+                /* hors de la boucle l affichage de l avis element n apparait qu une fois avec les avis additionné dans la varible avis elemnt qui sont eux incrementé parcouru par la boucle for*/
             
             }
 
-            pieceElement.appendChild(avisElement);
-            console.log( "avis elemnt apres la boucle", avisElement)/* hors de la boucle l affichage de l avis element n apparait qu une fois avec les avis additionné dans la varible avis elemnt qui sont eux incrementé parcouru par la boucle for*/
+           
 			
 		});
 	}

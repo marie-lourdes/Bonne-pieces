@@ -17,23 +17,27 @@ export function ajoutListenersAvis() {
             /*traiter le resultat de la reponse sous forme de promesse avec fetch , et le transformer en objet javascript pour manipuler les données de l objet tableau*/
              console.log( "reponse du serveur sous forme d obejt avc json()", avis);
 
-
-             const pieceElement = event.target.parentElement;
-            const avisElement = document.createElement("p");
-
-            for (let i = 0; i < avis.length; i++) {
-                avisElement.innerHTML += avis[i].utilisateur + ': ' + avis[i].commentaire + " " + avis[i].nbEtoiles + '<br>'; 
-                pieceElement.appendChild(avisElement);
-                console.log( "avis elemnt apres la boucle", avisElement)
-                /* hors de la boucle l affichage de l avis element n apparait qu une fois avec les avis additionné dans la varible avis elemnt qui sont eux incrementé parcouru par la boucle for*/
-            
-            }
-
-           
-			
+           // SAUVEGARDE DANS LE LOCALSTORAGE
+			window.localStorage.setItem("avis-piece-" + id, JSON.stringify(avis));/* argument 1 cle, valeur de la reponse avis retourné par l api transformé au format json*/
+            const pieceElement = event.target.parentElement;
+          
+			afficherAvis();/*affiche avis au clic du boutton afficher avis*/
 		});
 	}
 }
+
+export function afficherAvis(pieceElement, avis) { 
+    
+    const avisElement = document.createElement("p");
+    for (let i = 0; i < avis.length; i++) {
+        avisElement.innerHTML += avis[i].utilisateur + ': ' + avis[i].commentaire + " " + avis[i].nbEtoiles + '<br>'; 
+        pieceElement.appendChild(avisElement);
+        console.log( "avis elemnt apres la boucle", avisElement)
+        /* hors de la boucle l affichage de l avis element n apparait qu une fois avec les avis additionné dans la varible avis elemnt qui sont eux incrementé parcouru par la boucle for*/
+    
+    };
+
+ }
 
 /* RECUPERER, SAUVEGARDER ou CREER AVISUTILISATEUR DANS LA TABLE AVIS AVEC LES AVIS AJOUTÉ  DANS LE FORMULAIRE PAR LES UTILISATEURS DEPUIS LA PAGE WEB*/
 

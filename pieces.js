@@ -1,7 +1,7 @@
 
 /* AJOUT DE LA FONCTION "ajoutListenrAvis" CREE DANS LE FICHIER AVIS.JS*/
   
-  import {ajoutListenersAvis} from "./avis.js"; 
+  import {ajoutListenersAvis, afficherAvis} from "./avis.js"; 
 
   /* recupere la clé piece enregistré setItem du localStorage, recupere les donnees pieces eventuellment stockées dans le localstorage*/
  let pieces= window.localStorage.getItem("pieces");
@@ -51,6 +51,7 @@ function genererPage(pieces){ /* creation de la fonction generer page avec en pa
 
     // Création d’une balise dédiée à une pièce automobile
     const pieceElement = document.createElement("article");
+    pieceElement.dataset.id= piece.id;
 
   
 
@@ -90,7 +91,7 @@ function genererPage(pieces){ /* creation de la fonction generer page avec en pa
 		avisElement.dataset.id = piece.id; // Attribut data-id="XX"
 		pieceElement.appendChild(avisElement);
 
-  
+
 };
 /* APPEL DE LA FONCTION LISTENER BUTTON POUR AFFICHER LES AVIS*/
 
@@ -184,6 +185,18 @@ document.body.appendChild(text)
 console.log(text)
 };
 genererPage(pieces);/* Appel de la fonction avec pour arguments le tableau pieces*/
+
+  // AFFICHAGE DES AVIS S ILS ONT PRESENT DANS LE LOCALSTORAGE
+  for (let i = 0; i < pieces.length; i++) {
+	const id = pieces[i].id;/* on reparcoure les id des pieces relies au avis par piecId de la table, dans le cas ou des avis ont été rajouté*/
+	const avisJSON = window.localStorage.getItem("avis-piece-" + id);/*on recupere les avis avec l id du produit relie a la table avis avec pieceid*/
+	const avis = JSON.parse(avisJSON);
+
+	if (avis !== null) {/* si les donnes avis sont present dans le localstorage*/
+		const pieceElement = document.querySelector(`[data-id="${id}"`);
+		afficherAvis(pieceElement, avis); /*afficher avis elemnent au chargement de la page recuperé dans le local storage si les avis y sont present*/
+	}
+}
 
 
 /* ADD EVENT LISTENER DU BOUTONS TRIER POUR INTERAGIR AVEC L CONTENU ET TRIER PAR ORDRE CROISSANT DES PRIX*/
@@ -295,5 +308,6 @@ et reengeristre les nouvelle données de l api-http lors de la  session sur le l
  });
 
  /* si je raffraichis la page et ue j  appuer la le bouton mettre a jour la console api-http renvoit une nouvelle requette 200 
- et si je raffraichis la page et ssans avoir appuyer sur le bouton mettre a jour la console api http n envoit pas de nouvelle requette 200, les données sont chargé a partir du localstorage
- si j enleve le remove item l api revoit le code 304  redirection sur ressource mise en cache qui est ici le localstorage*/
+ et si je raffraichis la page et ssans avoir appuyer sur le bouton mettre a jour la console api http n envoit pas de nouvelle requette 200, les données sont rechargé a partir du localstorage
+ si j enleve le remove item l api revoit le code 304  redirection sur ressource mise en cache qui est ici le localstorage
+ si je ferme le navigateur et raffraichis la page sans avoir appuyer sur le bouton mettre a jour la console envoit le code 304 http, les données sont rechargé a partir du localstorage au rafraichissemnt de la page*/

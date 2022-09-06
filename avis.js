@@ -109,3 +109,12 @@ const data = {
        backgroundColor: "rgba(255, 230, 0, 1)", // couleur jaune
     }],
 };
+
+// Objet de configuration final
+const config = {
+    type: "bar",
+    data: data,
+    options: {
+        indexAxis: "y",
+    },
+};

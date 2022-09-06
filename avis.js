@@ -118,3 +118,9 @@ const config = {
         indexAxis: "y",
     },
 };
+
+// Rendu du graphique dans l'élément canvas
+const graphiqueAvis = new Chart(
+    document.querySelector("#graphique-avis"),
+    config,
+);

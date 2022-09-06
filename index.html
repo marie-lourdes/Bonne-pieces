@@ -5,6 +5,7 @@
 		<title>Les Bonnes Pièces</title>
 		<link rel="stylesheet" href="styles.css">
 		<script type="module" src="pieces.js"></script>
+		<script src="./api-http/node_modules/chart.js/dist/chart.js" defer></script><!-- s execute quand la page est entierement chargé-->
 	
 	</head>
 	<body>
@@ -47,6 +48,10 @@
 				</form>
 				<h3>Données</h3>
 				<button class="btn-maj"> Mettre à jour les pieces</button>
+				<div>
+					<h3>Aperçu des avis</h3>
+					<canvas id="graphique-avis" width="300" height="300"></canvas>
+				  </div>
 				
 			</section>
 

@@ -186,7 +186,7 @@ console.log(text)
 };
 genererPage(pieces);/* Appel de la fonction avec pour arguments le tableau pieces*/
 
-  // AFFICHAGE DES AVIS S ILS ONT PRESENT DANS LE LOCALSTORAGE
+  // AFFICHAGE DES AVIS S ILS ONT PRESENT DANS LE LOCALSTORAGE AU CHARGEMENT DE LA PAGE
   for (let i = 0; i < pieces.length; i++) {
 	const id = pieces[i].id;/* on reparcoure les id des pieces relies au avis par piecId de la table, dans le cas ou des avis ont été rajouté*/
 	const avisJSON = window.localStorage.getItem("avis-piece-" + id);/*on recupere les avis avec l id du produit relie a la table avis avec pieceid*/

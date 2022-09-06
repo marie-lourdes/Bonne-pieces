@@ -1,3 +1,4 @@
+/* global chart*/
 
 /* AJOUT DE LA FONCTION "ajoutListenrAvis" CREE DANS LE FICHIER AVIS.JS*/
   

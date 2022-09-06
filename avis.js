@@ -120,7 +120,7 @@ const config = {
 };
 
 // Rendu du graphique dans l'élément canvas
-const graphiqueAvis = new Chart(
+new Chart( /* nouvelle instance de la variable chart accessible dans chart.js*/
     document.querySelector("#graphique-avis"),
     config,
 );
